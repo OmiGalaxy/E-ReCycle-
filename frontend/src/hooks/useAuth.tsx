@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const response = await apiClient.getCurrentUser();
       setUser(response.data);
-    } catch (error) {
+    } catch (error: any) {
       Cookies.remove('access_token');
       Cookies.remove('refresh_token');
     } finally {

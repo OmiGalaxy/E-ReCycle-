@@ -53,7 +53,7 @@ export default function DashboardPage() {
         setMarketplaceItems(results[3].value.data || []);
       }
 
-    } catch (error) {
+    } catch (error: any) {
       console.error('Dashboard load error:', error);
     } finally {
       setLoading(false);

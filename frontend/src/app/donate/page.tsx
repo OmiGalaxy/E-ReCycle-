@@ -46,7 +46,7 @@ export default function DonatePage() {
     try {
       const response = await apiClient.getClassifications();
       setClassifications(response.data || []);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to load classifications:', error);
       toast.error(getErrorMessage(error) || 'Failed to load classifications');
       setClassifications([]);
@@ -60,7 +60,7 @@ export default function DonatePage() {
     try {
       const response = await apiClient.getDonationOrganizations();
       setOrganizations(response.data);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(getErrorMessage(error) || 'Failed to load organizations');
     } finally {
       setLoadingOrgs(false);
@@ -85,7 +85,7 @@ export default function DonatePage() {
       const response = await apiClient.createDonation(formData);
       toast.success('Donation registered successfully!');
       router.push('/dashboard');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Donation error:', error);
       toast.error(getErrorMessage(error) || 'Failed to register donation');
     } finally {

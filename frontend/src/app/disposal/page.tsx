@@ -53,7 +53,7 @@ export default function DisposalPage() {
     try {
       const response = await apiClient.getClassifications();
       setClassifications(response.data);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(getErrorMessage(error) || 'Failed to load classifications');
     }
   };
@@ -63,7 +63,7 @@ export default function DisposalPage() {
     try {
       const response = await apiClient.getVendors(formData.vendor_filter);
       setVendors(response.data);
-    } catch (error) {
+    } catch (error: any) {
       toast.error(getErrorMessage(error) || 'Failed to load vendors');
     } finally {
       setLoadingVendors(false);
@@ -109,7 +109,7 @@ export default function DisposalPage() {
       console.log('Disposal response:', response);
       toast.success('Disposal scheduled successfully!');
       router.push('/dashboard');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Disposal error:', error);
       if (error.response?.data?.detail) {
         toast.error(error.response.data.detail);
