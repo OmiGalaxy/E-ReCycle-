@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://your-backend-url.railway.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -23,6 +23,16 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
+    // Handle network errors
+    if (error.code === 'ERR_NETWORK' || error.message === 'Network Error') {
+      console.error('Network error - Backend may not be running');
+      return Promise.reject({
+        ...error,
+        message: 'Cannot connect to server. Please check if backend is running.',
+        code: 'ERR_NETWORK'
+      });
+    }
+
     if (error.response?.status === 401) {
       const refreshToken = Cookies.get('refresh_token');
       if (refreshToken) {

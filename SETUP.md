@@ -52,15 +52,32 @@ npm install
 npm run dev
 ```
 
-## Terminal Commands
+## 🚀 Quick Start
 
-**Backend:**
+### Option 1: Use Start Scripts (Recommended)
+
+**Windows:**
+```bash
+# Double-click start-dev.bat or run:
+start-dev.bat
+```
+
+**Linux/Mac:**
+```bash
+# Make executable and run:
+chmod +x start-dev.sh
+./start-dev.sh
+```
+
+### Option 2: Manual Start
+
+**Terminal 1 - Backend:**
 ```bash
 cd backend
 python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-**Frontend:**
+**Terminal 2 - Frontend:**
 ```bash
 cd frontend
 npm run dev
