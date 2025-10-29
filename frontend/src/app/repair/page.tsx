@@ -1,13 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Wrench, MapPin, Star, Phone, Clock, Shield, DollarSign, ChevronDown, ChevronUp, MessageCircle } from 'lucide-react';
+import { MapPin, Star, Phone, Clock, Shield, DollarSign, ChevronDown, ChevronUp, MessageCircle } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 import { getErrorMessage } from '@/lib/errorHandler';
 import toast from 'react-hot-toast';
-import { useAuth } from '@/hooks/useAuth';
 
 interface RepairShop {
   name: string;
@@ -39,17 +37,10 @@ export default function RepairPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [selectedShop, setSelectedShop] = useState<RepairShop | null>(null);
   
-  const { user } = useAuth();
-  const router = useRouter();
-
   useEffect(() => {
-    if (!user) {
-      router.push('/login');
-      return;
-    }
     loadRepairShops();
     loadFaq();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     loadRepairShops();
@@ -93,9 +84,7 @@ export default function RepairPage() {
     window.open(`tel:${shop.phone}`);
   };
 
-  const handleGetQuote = (shop: RepairShop) => {
-    toast.success(`Redirecting to ${shop.name} for quote...`);
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-12">
@@ -231,16 +220,10 @@ export default function RepairPage() {
                       </div>
                     </div>
                     
-                    <div className="flex space-x-3">
-                      <button 
-                        onClick={() => handleGetQuote(shop)}
-                        className="flex-1 btn-primary text-sm"
-                      >
-                        Get Quote
-                      </button>
+                    <div className="flex justify-center">
                       <button 
                         onClick={() => handleContactShop(shop)}
-                        className="flex-1 btn-secondary text-sm"
+                        className="btn-primary text-sm"
                       >
                         Call Now
                       </button>
