@@ -14,91 +14,91 @@ async def get_repair_shops(repair_type: str):
     shops = {
         "phones": [
             {
-                "name": "QuickFix Mobile", 
-                "address": "123 Tech St, Downtown", 
+                "name": "Rajesh Mobile Care", 
+                "address": "Shop 15, Connaught Place, New Delhi", 
                 "rating": 4.7, 
                 "specialties": ["iPhone", "Android", "Screen Repair"],
-                "phone": "+1 (555) 123-4567",
-                "hours": "Mon-Sat 9AM-7PM",
+                "phone": "+91 98765 43210",
+                "hours": "Mon-Sat 10AM-8PM",
                 "warranty": "90 days",
-                "price_range": "$50-200",
+                "price_range": "₹500-2000",
                 "reviews": [
-                    {"user": "John D.", "rating": 5, "comment": "Fixed my iPhone screen perfectly!"},
-                    {"user": "Sarah M.", "rating": 4, "comment": "Quick service, reasonable prices."}
+                    {"user": "Amit S.", "rating": 5, "comment": "Fixed my iPhone screen perfectly!"},
+                    {"user": "Priya M.", "rating": 4, "comment": "Quick service, reasonable prices."}
                 ]
             },
             {
-                "name": "Phone Repair Pro", 
-                "address": "456 Mobile Ave, Uptown", 
+                "name": "Sharma Electronics", 
+                "address": "MG Road, Bangalore", 
                 "rating": 4.5, 
-                "specialties": ["Samsung", "Google", "Battery Replacement"],
-                "phone": "+1 (555) 987-6543",
-                "hours": "Mon-Fri 10AM-6PM",
+                "specialties": ["Samsung", "OnePlus", "Battery Replacement"],
+                "phone": "+91 87654 32109",
+                "hours": "Mon-Fri 9AM-7PM",
                 "warranty": "60 days",
-                "price_range": "$40-180",
+                "price_range": "₹400-1800",
                 "reviews": [
-                    {"user": "Mike R.", "rating": 5, "comment": "Great expertise with Android devices."},
-                    {"user": "Lisa K.", "rating": 4, "comment": "Professional service, fair pricing."}
+                    {"user": "Rohit K.", "rating": 5, "comment": "Great expertise with Android devices."},
+                    {"user": "Kavya R.", "rating": 4, "comment": "Professional service, fair pricing."}
                 ]
             }
         ],
         "computers": [
             {
-                "name": "PC Doctor", 
-                "address": "789 Computer Blvd, Tech District", 
+                "name": "Gupta Computer Services", 
+                "address": "Nehru Place, New Delhi", 
                 "rating": 4.8, 
                 "specialties": ["Laptops", "Desktops", "Data Recovery"],
-                "phone": "+1 (555) 456-7890",
-                "hours": "Mon-Sat 8AM-8PM",
+                "phone": "+91 99887 76543",
+                "hours": "Mon-Sat 10AM-8PM",
                 "warranty": "120 days",
-                "price_range": "$80-400",
+                "price_range": "₹800-4000",
                 "reviews": [
-                    {"user": "David L.", "rating": 5, "comment": "Saved my laptop and all my data!"},
-                    {"user": "Emma W.", "rating": 5, "comment": "Excellent technical knowledge."}
+                    {"user": "Vikash L.", "rating": 5, "comment": "Saved my laptop and all my data!"},
+                    {"user": "Sneha W.", "rating": 5, "comment": "Excellent technical knowledge."}
                 ]
             },
             {
-                "name": "Tech Solutions", 
-                "address": "321 IT Way, Business Park", 
+                "name": "Kumar Tech Solutions", 
+                "address": "IT Park, Pune", 
                 "rating": 4.6, 
                 "specialties": ["Gaming PCs", "Business Systems", "Upgrades"],
-                "phone": "+1 (555) 321-0987",
+                "phone": "+91 88776 65432",
                 "hours": "Mon-Fri 9AM-6PM",
                 "warranty": "90 days",
-                "price_range": "$100-500",
+                "price_range": "₹1000-5000",
                 "reviews": [
-                    {"user": "Alex T.", "rating": 5, "comment": "Built an amazing gaming rig for me."},
-                    {"user": "Rachel P.", "rating": 4, "comment": "Good for business computer needs."}
+                    {"user": "Arjun T.", "rating": 5, "comment": "Built an amazing gaming rig for me."},
+                    {"user": "Riya P.", "rating": 4, "comment": "Good for business computer needs."}
                 ]
             }
         ],
         "appliances": [
             {
-                "name": "Home Appliance Repair", 
-                "address": "654 Service Rd, Residential Area", 
+                "name": "Patel Home Services", 
+                "address": "Sector 18, Noida", 
                 "rating": 4.3, 
-                "specialties": ["Kitchen", "Laundry", "HVAC"],
-                "phone": "+1 (555) 654-3210",
-                "hours": "Mon-Sat 7AM-5PM",
+                "specialties": ["Kitchen", "Laundry", "AC Repair"],
+                "phone": "+91 77665 54321",
+                "hours": "Mon-Sat 8AM-6PM",
                 "warranty": "180 days",
-                "price_range": "$120-600",
+                "price_range": "₹1200-6000",
                 "reviews": [
-                    {"user": "Tom B.", "rating": 4, "comment": "Fixed my washing machine quickly."},
-                    {"user": "Nancy H.", "rating": 5, "comment": "Reliable service for all appliances."}
+                    {"user": "Suresh B.", "rating": 4, "comment": "Fixed my washing machine quickly."},
+                    {"user": "Nisha H.", "rating": 5, "comment": "Reliable service for all appliances."}
                 ]
             },
             {
-                "name": "Fix-It-All Services", 
-                "address": "987 Repair Lane, Industrial Zone", 
+                "name": "Singh Repair Services", 
+                "address": "Lajpat Nagar, Delhi", 
                 "rating": 4.1, 
                 "specialties": ["Electronics", "Small Appliances", "Diagnostics"],
-                "phone": "+1 (555) 789-0123",
-                "hours": "Tue-Sat 8AM-6PM",
+                "phone": "+91 66554 43210",
+                "hours": "Tue-Sat 9AM-7PM",
                 "warranty": "60 days",
-                "price_range": "$60-300",
+                "price_range": "₹600-3000",
                 "reviews": [
-                    {"user": "Steve C.", "rating": 4, "comment": "Good diagnostic skills."},
-                    {"user": "Maria G.", "rating": 4, "comment": "Honest pricing and service."}
+                    {"user": "Sanjay C.", "rating": 4, "comment": "Good diagnostic skills."},
+                    {"user": "Meera G.", "rating": 4, "comment": "Honest pricing and service."}
                 ]
             }
         ]

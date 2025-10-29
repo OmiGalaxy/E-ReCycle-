@@ -81,6 +81,8 @@ export default function RepairPage() {
   };
 
   const handleContactShop = (shop: RepairShop) => {
+    // Show Indian phone number in toast and open dialer
+    toast.success(`Calling ${shop.name} at ${shop.phone}`);
     window.open(`tel:${shop.phone}`);
   };
 
@@ -220,11 +222,12 @@ export default function RepairPage() {
                       </div>
                     </div>
                     
-                    <div className="flex justify-center">
+                    <div className="mt-4">
                       <button 
                         onClick={() => handleContactShop(shop)}
-                        className="btn-primary text-sm"
+                        className="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center"
                       >
+                        <Phone className="h-4 w-4 mr-2" />
                         Call Now
                       </button>
                     </div>
