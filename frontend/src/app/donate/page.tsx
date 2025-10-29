@@ -77,10 +77,7 @@ export default function DonatePage() {
       return;
     }
 
-    if (!selectedOrganization) {
-      toast.error('Please select an organization');
-      return;
-    }
+
 
     if (!formData.location.trim()) {
       toast.error('Please enter a location');
@@ -91,7 +88,7 @@ export default function DonatePage() {
     try {
       const donationData = {
         ...formData,
-        organization: selectedOrganization
+        organization: selectedOrganization || undefined
       };
       const response = await apiClient.createDonation(donationData);
       toast.success('Donation registered successfully!');
@@ -192,7 +189,6 @@ export default function DonatePage() {
                     Choose Organization
                   </label>
                   <select
-                    required
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                     value={selectedOrganization}
                     onChange={(e) => setSelectedOrganization(e.target.value)}
@@ -205,7 +201,7 @@ export default function DonatePage() {
                     ))}
                   </select>
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    Choose which organization you'd like to donate to
+                    Choose which organization you'd like to donate to (optional)
                   </p>
                 </div>
 
