@@ -10,14 +10,14 @@ router = APIRouter()
 class DonationCreate(BaseModel):
     classification_id: int
     location: str
-    organization: Optional[str] = None
+    organization: str
 
 class DonationResponse(BaseModel):
     id: int
     user_id: int
     classification_id: int
     location: str
-    organization: Optional[str]
+    organization: str
     status: str
     created_at: str
     
