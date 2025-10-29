@@ -85,7 +85,7 @@ class PurchaseResponse(BaseModel):
 
 def get_current_user(authorization: str = Header(None), db: Session = Depends(get_db)):
     if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Authorization header required")
+        raise HTTPException(status_code=401, detail="Please login to access marketplace")
     
     token = authorization.split(" ")[1]
     email = verify_token(token)

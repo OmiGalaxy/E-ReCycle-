@@ -10,7 +10,7 @@ router = APIRouter()
 
 def get_current_user(authorization: str = Header(None, alias="Authorization"), db: Session = Depends(get_db)):
     if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="Authorization header required")
+        raise HTTPException(status_code=401, detail="Please login to classify items")
     
     token = authorization.split(" ")[1]
     email = verify_token(token)

@@ -212,7 +212,7 @@ export default function MarketplacePage() {
                   className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 rounded-lg flex items-center space-x-2 transition-colors"
                 >
                   <Plus className="h-4 w-4" />
-                  <span>Login to Sell</span>
+                  <span>Sell Your Item</span>
                 </button>
               )}
             </div>
