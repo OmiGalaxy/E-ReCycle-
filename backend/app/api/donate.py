@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db, Donation, Classification, User
 from app.core.security import verify_token
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 router = APIRouter()
 
