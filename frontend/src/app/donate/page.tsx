@@ -16,7 +16,9 @@ export default function DonatePage() {
   const [formData, setFormData] = useState<DonationCreate>({
     classification_id: 0,
     location: '',
+    organization: '',
   });
+  const [selectedOrganization, setSelectedOrganization] = useState('');
   const [loading, setLoading] = useState(false);
   const [loadingOrgs, setLoadingOrgs] = useState(false);
   const [loadingClassifications, setLoadingClassifications] = useState(true);
@@ -75,6 +77,11 @@ export default function DonatePage() {
       return;
     }
 
+    if (!selectedOrganization) {
+      toast.error('Please select an organization');
+      return;
+    }
+
     if (!formData.location.trim()) {
       toast.error('Please enter a location');
       return;
@@ -82,7 +89,11 @@ export default function DonatePage() {
 
     setLoading(true);
     try {
-      const response = await apiClient.createDonation(formData);
+      const donationData = {
+        ...formData,
+        organization: selectedOrganization
+      };
+      const response = await apiClient.createDonation(donationData);
       toast.success('Donation registered successfully!');
       router.push('/dashboard');
     } catch (error: any) {
@@ -117,7 +128,7 @@ export default function DonatePage() {
                 Register Donation
               </h2>
               
-              {!loadingClassifications && classifications.filter(item => item.condition === 'working').length === 0 ? (
+              {!loadingClassifications && classifications.filter(item => item.condition === 'working' || item.condition === 'unknown').length === 0 ? (
                 <div className="text-center py-8">
                   <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Heart className="h-8 w-8 text-gray-400" />
@@ -157,21 +168,44 @@ export default function DonatePage() {
                     >
                       <option value="">Choose an item...</option>
                       {classifications
-                        .filter(item => item.condition === 'working')
+                        .filter(item => item.condition === 'working' || item.condition === 'unknown')
                         .map((item) => (
                           <option key={item.id} value={item.id}>
-                            {item.item_name} - {item.condition}
+                            {item.condition === 'unknown' ? `${item.item_name} - Unknown` : `${item.item_name} - ${item.condition}`}
                           </option>
                         ))}
                     </select>
                   )}
                   <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                    Only working items can be donated
-                    {!loadingClassifications && classifications.filter(item => item.condition === 'working').length === 0 && (
+                    Working and unknown condition items can be donated
+                    {!loadingClassifications && classifications.filter(item => item.condition === 'working' || item.condition === 'unknown').length === 0 && (
                       <span className="block text-amber-600 dark:text-amber-400 mt-1">
-                        No working items available. Please classify some working items first.
+                        No suitable items available. Please classify some items first.
                       </span>
                     )}
+                  </p>
+                </div>
+
+                {/* Select Organization */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Choose Organization
+                  </label>
+                  <select
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    value={selectedOrganization}
+                    onChange={(e) => setSelectedOrganization(e.target.value)}
+                  >
+                    <option value="">Select an organization...</option>
+                    {organizations.map((org, index) => (
+                      <option key={index} value={org.name}>
+                        {org.name} - {org.type}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                    Choose which organization you'd like to donate to
                   </p>
                 </div>
 
@@ -201,7 +235,7 @@ export default function DonatePage() {
                   </button>
                   <button
                     type="submit"
-                    disabled={loading || loadingClassifications || classifications.filter(item => item.condition === 'working').length === 0}
+                    disabled={loading || loadingClassifications || classifications.filter(item => item.condition === 'working' || item.condition === 'unknown').length === 0}
                     className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loading ? 'Registering...' : 'Register Donation'}

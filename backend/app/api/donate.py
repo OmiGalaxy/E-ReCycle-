@@ -10,12 +10,14 @@ router = APIRouter()
 class DonationCreate(BaseModel):
     classification_id: int
     location: str
+    organization: str
 
 class DonationResponse(BaseModel):
     id: int
     user_id: int
     classification_id: int
     location: str
+    organization: str
     status: str
     created_at: str
     
@@ -49,13 +51,14 @@ async def register_donation(
             raise HTTPException(status_code=404, detail="Classification not found")
         
         # Check if item condition is suitable for donation
-        if classification.condition != 'working':
-            raise HTTPException(status_code=400, detail="Only working items can be donated")
+        if classification.condition not in ['working', 'unknown']:
+            raise HTTPException(status_code=400, detail="Only working or unknown condition items can be donated")
         
         db_donation = Donation(
             user_id=current_user.id,
             classification_id=donation.classification_id,
-            location=donation.location
+            location=donation.location,
+            organization=donation.organization
         )
         db.add(db_donation)
         db.commit()
@@ -66,6 +69,7 @@ async def register_donation(
             "user_id": db_donation.user_id,
             "classification_id": db_donation.classification_id,
             "location": db_donation.location,
+            "organization": db_donation.organization,
             "status": db_donation.status,
             "created_at": db_donation.created_at.isoformat() if db_donation.created_at else None
         }
@@ -86,6 +90,7 @@ async def get_donations(current_user: User = Depends(get_current_user), db: Sess
                 "user_id": donation.user_id,
                 "classification_id": donation.classification_id,
                 "location": donation.location,
+                "organization": donation.organization,
                 "status": donation.status,
                 "created_at": donation.created_at.isoformat() if donation.created_at else None
             })

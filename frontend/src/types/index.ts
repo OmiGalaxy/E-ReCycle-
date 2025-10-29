@@ -37,6 +37,7 @@ export interface Donation {
   user_id: number;
   classification_id: number;
   location: string;
+  organization: string;
   status: string;
   created_at: string;
 }
@@ -121,6 +122,7 @@ export interface DisposalCreate {
 export interface DonationCreate {
   classification_id: number;
   location: string;
+  organization: string;
 }
 
 export interface MarketplaceItemCreate {

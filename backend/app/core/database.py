@@ -58,6 +58,7 @@ class Donation(Base):
     user_id = Column(Integer)
     classification_id = Column(Integer)
     location = Column(Text)
+    organization = Column(String)
     status = Column(String, default="available")
     created_at = Column(DateTime, default=get_utc_now)
 
